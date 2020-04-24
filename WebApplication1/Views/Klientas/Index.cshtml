@@ -13,6 +13,9 @@
     <thead>
         <tr style="background-color: lightblue">
             <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.asmensKodas)
             </th>
             <th>
@@ -30,9 +33,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.epastas)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.id)
-            </th>
             <th style="width: 18%"></th>
         </tr>
     </thead>
@@ -41,6 +41,9 @@
         @foreach (var item in Model)
         {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.asmensKodas)
             </td>
@@ -58,9 +61,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.epastas)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.id)
             </td>
             <td>
                 @Html.ActionLink("Redaguoti", "Edit", new { id = item.asmensKodas }, new { @class = "btn btn-primary action" })

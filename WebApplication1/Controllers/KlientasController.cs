@@ -32,7 +32,14 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                // išsaugo nauja markę duomenų bazėje
+                // Patikrinama ar klientas su tokiu asmens kodu jau egzistuoja
+                Klientas tmpKlientas = klientasRepository.getKlientas(collection.asmensKodas);
+                if (tmpKlientas.asmensKodas != null)
+                {
+                    ModelState.AddModelError("asmensKodas", "Klientas su tokiu asmens kodu jau užregistruotas");
+                    return View(collection);
+                }
+                //Jei nera sukuria nauja klienta
                 if (ModelState.IsValid)
                 {
                     klientasRepository.addKlientas(collection);
@@ -53,57 +60,57 @@ namespace WebApplication1.Controllers
         }
 
         // POST: Klientas/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(string id, Klientas collection)
-        //{
-        //    try
-        //    {
-        //        // Atnaujina kliento informacija
-        //        if (ModelState.IsValid)
-        //        {
-        //            klientasRepository.updateKlientas(collection);
-        //        }
+        [HttpPost]
+        public ActionResult Edit(string id, Klientas collection)
+        {
+            try
+            {
+                // Atnaujina kliento informacija
+                if (ModelState.IsValid)
+                {
+                    klientasRepository.updateKlientas(collection);
+                }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View(collection);
-        //    }
-        //}
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View(collection);
+            }
+        }
 
-        //// GET: Klientas/Delete/5
-        //public ActionResult Delete(string id)
-        //{
-        //    return View(klientasRepository.getKlientas(id));
-        //}
+        // GET: Klientas/Delete/5
+        public ActionResult Delete(string id)
+        {
+            return View(klientasRepository.getKlientas(id));
+        }
 
         // POST: Klientas/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(string id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        bool naudojama = false;
+        [HttpPost]
+        public ActionResult Delete(string id, FormCollection collection)
+        {
+            try
+            {
+                bool naudojama = false;
 
-        //        if (klientasRepository.getKlientasSutarciuCount(id) > 0)
-        //        {
-        //            naudojama = true;
-        //            ViewBag.naudojama = "Negalima pašalinti klientas turėjo sudarytų sutarčių";
-        //            return View(klientasRepository.getKlientas(id));
-        //        }
+                if (klientasRepository.getKlientasSutarciuCount(id) > 0)
+                {
+                    naudojama = true;
+                    ViewBag.naudojama = "Negalima pašalinti klientas turėjo sudarytų sutarčių";
+                    return View(klientasRepository.getKlientas(id));
+                }
 
-        //        if (!naudojama)
-        //        {
-        //            klientasRepository.deleteKlientas(id);
-        //        }
+                if (!naudojama)
+                {
+                    klientasRepository.deleteKlientas(id);
+                }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }
