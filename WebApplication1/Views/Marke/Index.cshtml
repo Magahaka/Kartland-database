@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebApplication1.Models.Marke>
+
+@{
+    ViewBag.Title = "Markės";
+}
+
+<h2>Automobilių markės</h2>
+
+<p>
+    @Html.ActionLink("Nauja markė", "Create", "Marke", new { @class = "btn btn-success" })
+</p>
+<table class="table table-striped datatable">
+    <thead>
+        <tr style="background-color: lightblue">
+            <th>
+                @Html.DisplayNameFor(model => model.kodas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pavadinimas)
+            </th>
+            <th style="width: 18%"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kodas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pavadinimas)
+                </td>
+                <td>
+                    @Html.ActionLink("Redaguoti", "Edit", new { kodas = item.kodas }, new { @class = "btn btn-primary action" })
+                    @Html.ActionLink("Šalinti", "Delete", new { kodas = item.kodas }, new { @class = "btn btn-danger action" })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

@@ -40,56 +40,24 @@ namespace WebApplication1.Repos
             return klientai;
         }
 
-        //public bool addKlientas(Klientas klientas)
-        //{
-        //    try
-        //    {
-        //        string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
-        //        MySqlConnection mySqlConnection = new MySqlConnection(conn);
-        //        string sqlquery = @"INSERT INTO " + Globals.dbPrefix + "klientai(asmens_kodas,vardas,pavarde,gimimo_data,telefonas,epastas)VALUES(?asmkod,?vardas,?pavarde,?gimdata,?tel,?email);";
-        //        MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
-        //        mySqlCommand.Parameters.Add("?asmkod", MySqlDbType.VarChar).Value = klientas.asmensKodas;
-        //        mySqlCommand.Parameters.Add("?vardas", MySqlDbType.VarChar).Value = klientas.vardas;
-        //        mySqlCommand.Parameters.Add("?pavarde", MySqlDbType.VarChar).Value = klientas.pavarde;
-        //        mySqlCommand.Parameters.Add("?gimdata", MySqlDbType.Date).Value = klientas.gimimoData;
-        //        mySqlCommand.Parameters.Add("?tel", MySqlDbType.VarChar).Value = klientas.telefonas;
-        //        mySqlCommand.Parameters.Add("?email", MySqlDbType.VarChar).Value = klientas.epastas;
-        //        mySqlConnection.Open();
-        //        mySqlCommand.ExecuteNonQuery();
-        //        mySqlConnection.Close();
-        //        return true;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return false;
-        //    }
-        //}
-
-        //public bool updateKlientas(Klientas klientas)
-        //{
-
-        //    try
-        //    {
-        //        string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
-        //        MySqlConnection mySqlConnection = new MySqlConnection(conn);
-        //        string sqlquery = @"UPDATE " + Globals.dbPrefix + "klientai a SET a.vardas=?vardas, a.pavarde=?pavarde, a.gimimo_data=?gimdata, a.telefonas=?tel, a.epastas=?email WHERE a.asmens_kodas=?asmkod";
-        //        MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
-        //        mySqlCommand.Parameters.Add("?asmkod", MySqlDbType.VarChar).Value = klientas.asmensKodas;
-        //        mySqlCommand.Parameters.Add("?vardas", MySqlDbType.VarChar).Value = klientas.vardas;
-        //        mySqlCommand.Parameters.Add("?pavarde", MySqlDbType.VarChar).Value = klientas.pavarde;
-        //        mySqlCommand.Parameters.Add("?gimdata", MySqlDbType.Date).Value = klientas.gimimoData;
-        //        mySqlCommand.Parameters.Add("?tel", MySqlDbType.VarChar).Value = klientas.telefonas;
-        //        mySqlCommand.Parameters.Add("?email", MySqlDbType.VarChar).Value = klientas.epastas;
-        //        mySqlConnection.Open();
-        //        mySqlCommand.ExecuteNonQuery();
-        //        mySqlConnection.Close();
-        //        return true;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return false;
-        //    }
-        //}
+        public bool addKlientas(Klientas klientas)
+        {
+            string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
+            MySqlConnection mySqlConnection = new MySqlConnection(conn);
+            string sqlquery = @"INSERT INTO klientas(asmens_kodas,vardas,pavarde,gimimo_data,telefonas,el_pastas,slapyvardis)VALUES(?asmkod,?vardas,?pavarde,?gimdata,?tel,?email,?slapyv);";
+            MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
+            mySqlCommand.Parameters.Add("?asmkod", MySqlDbType.VarChar).Value = klientas.asmensKodas;
+            mySqlCommand.Parameters.Add("?vardas", MySqlDbType.VarChar).Value = klientas.vardas;
+            mySqlCommand.Parameters.Add("?pavarde", MySqlDbType.VarChar).Value = klientas.pavarde;
+            mySqlCommand.Parameters.Add("?gimdata", MySqlDbType.Date).Value = klientas.gimimoData;
+            mySqlCommand.Parameters.Add("?tel", MySqlDbType.VarChar).Value = klientas.telefonas;
+            mySqlCommand.Parameters.Add("?email", MySqlDbType.VarChar).Value = klientas.epastas;
+            mySqlCommand.Parameters.Add("?slapyv", MySqlDbType.VarChar).Value = klientas.slapyvardis;
+            mySqlConnection.Open();
+            mySqlCommand.ExecuteNonQuery();
+            mySqlConnection.Close();
+            return true;
+        }
 
         public Klientas getKlientas(string asmkodas)
         {
@@ -117,37 +85,5 @@ namespace WebApplication1.Repos
             }
             return klientas;
         }
-
-        //public int getKlientasSutarciuCount(string id)
-        //{
-        //    int naudota = 0;
-        //    string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
-        //    MySqlConnection mySqlConnection = new MySqlConnection(conn);
-        //    string sqlquery = @"SELECT count(nr) as kiekis from " + Globals.dbPrefix + "sutartys where fk_klientas=" + id;
-        //    MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
-        //    mySqlConnection.Open();
-        //    MySqlDataAdapter mda = new MySqlDataAdapter(mySqlCommand);
-        //    DataTable dt = new DataTable();
-        //    mda.Fill(dt);
-        //    mySqlConnection.Close();
-
-        //    foreach (DataRow item in dt.Rows)
-        //    {
-        //        naudota = Convert.ToInt32(item["kiekis"] == DBNull.Value ? 0 : item["kiekis"]);
-        //    }
-        //    return naudota;
-        //}
-
-        //public void deleteKlientas(string id)
-        //{
-        //    string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
-        //    MySqlConnection mySqlConnection = new MySqlConnection(conn);
-        //    string sqlquery = @"DELETE FROM " + Globals.dbPrefix + "klientai where asmens_kodas=?id";
-        //    MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
-        //    mySqlCommand.Parameters.Add("?id", MySqlDbType.VarChar).Value = id;
-        //    mySqlConnection.Open();
-        //    mySqlCommand.ExecuteNonQuery();
-        //    mySqlConnection.Close();
-        //}
     }
 }

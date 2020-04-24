@@ -27,31 +27,24 @@ namespace WebApplication1.Controllers
         }
 
         // POST: Klientas/Create
-        //[HttpPost]
-        //public ActionResult Create(Klientas collection)
-        //{
-        //    try
-        //    {
-        //        // Patikrinama ar klientas su tokiu asmens kodu jau egzistuoja
-        //        Klientas tmpKlientas = klientasRepository.getKlientas(collection.asmensKodas);
-        //        if (tmpKlientas.asmensKodas != null)
-        //        {
-        //            ModelState.AddModelError("asmensKodas", "Klientas su tokiu asmens kodu jau užregistruotas");
-        //            return View(collection);
-        //        }
-        //        //Jei nera sukuria nauja klienta
-        //        if (ModelState.IsValid)
-        //        {
-        //            klientasRepository.addKlientas(collection);
-        //        }
+        [HttpPost]
+        public ActionResult Create(Klientas collection)
+        {
+            try
+            {
+                // išsaugo nauja markę duomenų bazėje
+                if (ModelState.IsValid)
+                {
+                    klientasRepository.addKlientas(collection);
+                }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View(collection);
-        //    }
-        //}
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View(collection);
+            }
+        }
 
         // GET: Klientas/Edit/5
         public ActionResult Edit(string id)

@@ -32,6 +32,7 @@ namespace WebApplication1.Models
         [DisplayName("Slapyvardis")]
         [Required]
         public string slapyvardis { get; set; }
+        [DisplayName("ID")]
         public int id { get; set; }
     }
 }

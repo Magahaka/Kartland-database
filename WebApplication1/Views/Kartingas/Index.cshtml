@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebApplication1.ViewModels.KartingaiListViewModel>
+
+@{
+    ViewBag.Title = "Kartingai";
+}
+
+<h2>Kartingai</h2>
+
+<p>
+    @Html.ActionLink("Naujas kartingas", "Create", "Kartingas", new { @class = "btn btn-success" })
+</p>
+<table class="table table-striped datatable">
+    <thead>
+        <tr style="background-color: lightblue">
+            <th>
+                @Html.DisplayNameFor(model => model.busena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grupe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.modelis)
+            </th>
+            <th style="width: 18%"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.busena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grupe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.marke) @Html.DisplayFor(modelItem => item.modelis)
+            </td>
+            <td>
+                @Html.ActionLink("Redaguoti", "Edit", new { kodas = item.kodas }, new { @class = "btn btn-primary action" })
+                @Html.ActionLink("Šalinti", "Delete", new { kodas = item.kodas }, new { @class = "btn btn-danger action" })
+            </td>
+        </tr>
+        }
+    </tbody>
+
+</table>
+
