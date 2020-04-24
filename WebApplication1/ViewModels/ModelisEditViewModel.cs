@@ -16,7 +16,7 @@ namespace WebApplication1.ViewModels
         [MaxLength(20)]
         [Required]
         public string pavadinimas { get; set; }
-        [DisplayName("Markė")]
+        [DisplayName("Gamintojas")]
         [Required]
         public int fk_marke { get; set; }
 

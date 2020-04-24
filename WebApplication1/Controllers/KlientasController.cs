@@ -32,19 +32,10 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                // Patikrinama ar klientas su tokiu asmens kodu jau egzistuoja
-                Klientas tmpKlientas = klientasRepository.getKlientas(collection.asmensKodas);
-                if (tmpKlientas.asmensKodas != null)
-                {
-                    ModelState.AddModelError("asmensKodas", "Klientas su tokiu asmens kodu jau užregistruotas");
-                    return View(collection);
-                }
-                //Jei nera sukuria nauja klienta
-                if (ModelState.IsValid)
-                {
-                    klientasRepository.addKlientas(collection);
-                }
+                // Pridedamas naujas klientas
+                klientasRepository.addKlientas(collection);
 
+                // Nukreipia į sąrašą
                 return RedirectToAction("Index");
             }
             catch
@@ -54,14 +45,14 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Klientas/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
             return View(klientasRepository.getKlientas(id));
         }
 
         // POST: Klientas/Edit/5
         [HttpPost]
-        public ActionResult Edit(string id, Klientas collection)
+        public ActionResult Edit(int id, Klientas collection)
         {
             try
             {
@@ -80,14 +71,14 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Klientas/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             return View(klientasRepository.getKlientas(id));
         }
 
         // POST: Klientas/Delete/5
         [HttpPost]
-        public ActionResult Delete(string id, FormCollection collection)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {

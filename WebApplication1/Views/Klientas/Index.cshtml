@@ -63,8 +63,8 @@
                 @Html.DisplayFor(modelItem => item.epastas)
             </td>
             <td>
-                @Html.ActionLink("Redaguoti", "Edit", new { id = item.asmensKodas }, new { @class = "btn btn-primary action" })
-                @Html.ActionLink("Šalinti", "Delete", new { id = item.asmensKodas }, new { @class = "btn btn-danger action" })
+                @Html.ActionLink("Redaguoti", "Edit", new { id = item.id }, new { @class = "btn btn-primary action" })
+                @Html.ActionLink("Šalinti", "Delete", new { id = item.id }, new { @class = "btn btn-danger action" })
             </td>
         </tr>
         }

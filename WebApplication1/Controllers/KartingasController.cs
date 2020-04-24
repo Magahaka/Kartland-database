@@ -31,13 +31,13 @@ namespace WebApplication1.Controllers
             return View(kartingaiEditViewModel);
         }
 
-        // POST: Automobilis/Create
+        // POST: Kartingas/Create
         [HttpPost]
         public ActionResult Create(KartingaiEditViewModel collection)
         {
             try
             {
-                //Pridedamas naujas automobilis
+                //Pridedamas naujas kartingas
                 kartingaiRepository.addKart(collection);
 
                 //Nukreipia i sąrašą
@@ -50,7 +50,7 @@ namespace WebApplication1.Controllers
             }
         }
 
-        // GET: Automobilis/Edit/5
+        // GET: Kartingas/Edit/5
         public ActionResult Edit(int kodas)
         {
             //Surenkama automobilio informacija iš duomenų bazės

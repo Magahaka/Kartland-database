@@ -81,14 +81,14 @@ namespace WebApplication1.Repos
             }
         }
 
-        public Klientas getKlientas(string asmkodas)
+        public Klientas getKlientas(int id)
         {
             Klientas klientas = new Klientas();
             string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
             MySqlConnection mySqlConnection = new MySqlConnection(conn);
-            string sqlquery = "select * from klientas where asmens_kodas=?asmkodas";
+            string sqlquery = "select * from klientas where id_KLIENTAS=?id";
             MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
-            mySqlCommand.Parameters.Add("?asmkodas", MySqlDbType.VarChar).Value = asmkodas;
+            mySqlCommand.Parameters.Add("?id", MySqlDbType.Int32).Value = id;
             mySqlConnection.Open();
             MySqlDataAdapter mda = new MySqlDataAdapter(mySqlCommand);
             DataTable dt = new DataTable();
@@ -115,7 +115,7 @@ namespace WebApplication1.Repos
             {
                 string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
                 MySqlConnection mySqlConnection = new MySqlConnection(conn);
-                string sqlquery = @"UPDATE klientas a SET a.vardas=?vardas, a.pavarde=?pavarde, a.gimimo_data=?gimdata, a.telefonas=?tel, a.epastas=?email WHERE a.id_KLIENTAS=?kodas";
+                string sqlquery = @"UPDATE klientas a SET a.asmens_kodas=?asmkod a.vardas=?vardas, a.pavarde=?pavarde, a.gimimo_data=?gimdata, a.telefonas=?tel, a.epastas=?email WHERE a.id_KLIENTAS=?kodas";
                 MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
                 mySqlCommand.Parameters.Add("?asmkod", MySqlDbType.VarChar).Value = klientas.asmensKodas;
                 mySqlCommand.Parameters.Add("?vardas", MySqlDbType.VarChar).Value = klientas.vardas;
@@ -134,7 +134,7 @@ namespace WebApplication1.Repos
             }
         }
 
-        public int getKlientasSutarciuCount(string id)
+        public int getKlientasSutarciuCount(int id)
         {
             int naudota = 0;
             string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
@@ -154,13 +154,13 @@ namespace WebApplication1.Repos
             return naudota;
         }
 
-        public void deleteKlientas(string id)
+        public void deleteKlientas(int id)
         {
             string conn = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
             MySqlConnection mySqlConnection = new MySqlConnection(conn);
-            string sqlquery = @"DELETE FROM klientas where asmens_kodas=?id";
+            string sqlquery = @"DELETE FROM klientas where id_KLIENTAS=?id";
             MySqlCommand mySqlCommand = new MySqlCommand(sqlquery, mySqlConnection);
-            mySqlCommand.Parameters.Add("?id", MySqlDbType.VarChar).Value = id;
+            mySqlCommand.Parameters.Add("?id", MySqlDbType.Int32).Value = id;
             mySqlConnection.Open();
             mySqlCommand.ExecuteNonQuery();
             mySqlConnection.Close();

@@ -12,7 +12,7 @@ namespace WebApplication1.ViewModels
         public int kodas { get; set; }
         [DisplayName("Pavadinimas")]
         public string pavadinimas { get; set; }
-        [DisplayName("Markė")]
+        [DisplayName("Gamintojas")]
         public string marke { get; set; }
     }
 }
