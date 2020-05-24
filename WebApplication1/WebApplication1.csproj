@@ -140,6 +140,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AtaskaitaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KartingasController.cs" />
     <Compile Include="Controllers\KlientasController.cs" />
@@ -154,13 +155,16 @@
     <Compile Include="Models\Marke.cs" />
     <Compile Include="Models\Modelis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repos\AtaskaituRepository.cs" />
     <Compile Include="Repos\GrupeRepository.cs" />
     <Compile Include="Repos\KartingaiRepository.cs" />
     <Compile Include="Repos\KlientasRepository.cs" />
     <Compile Include="Repos\MarkeRepository.cs" />
     <Compile Include="Repos\ModeliuRepository.cs" />
+    <Compile Include="ViewModels\AtaskaitaViewModel.cs" />
     <Compile Include="ViewModels\KartingaiEditViewModel.cs" />
     <Compile Include="ViewModels\KartingaiListViewModel.cs" />
+    <Compile Include="ViewModels\KartinguAtaskaitaViewModel.cs" />
     <Compile Include="ViewModels\ModelisEditViewModel.cs" />
     <Compile Include="ViewModels\ModelisViewModel.cs" />
   </ItemGroup>
@@ -262,6 +266,7 @@
     <Content Include="Views\Kartingas\Edit.cshtml" />
     <Content Include="Views\Klientas\Delete.cshtml" />
     <Content Include="Views\Klientas\Edit.cshtml" />
+    <Content Include="Views\Ataskaita\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
